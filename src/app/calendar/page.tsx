@@ -641,14 +641,8 @@ export default function CalendarPage() {
         </div>
 
         {/* Analytics Top Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left select-none">
-          <div 
-            onClick={() => {
-              setTypeFilters(["survey", "delivery", "payment", "milestone", "meeting", "other"]);
-              setStatusFilters(["pending", "completed", "cancelled"]);
-            }}
-            className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4 cursor-pointer hover:shadow-md hover:border-gold/30 hover:-translate-y-0.5 transition-all duration-300"
-          >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+          <div className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4">
             <div className="h-10 w-10 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
               <CalendarIcon className="h-5 w-5 text-primary" />
             </div>
@@ -657,13 +651,7 @@ export default function CalendarPage() {
               <span className="text-lg font-black text-primary">{activeMonthStats.total} รายการ</span>
             </div>
           </div>
-          <div 
-            onClick={() => {
-              setTypeFilters(["survey"]);
-              setStatusFilters(["pending", "completed", "cancelled"]);
-            }}
-            className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4 cursor-pointer hover:shadow-md hover:border-gold/30 hover:-translate-y-0.5 transition-all duration-300"
-          >
+          <div className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4">
             <div className="h-10 w-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
               <Search className="h-5 w-5 text-cyan-600" />
             </div>
@@ -672,13 +660,7 @@ export default function CalendarPage() {
               <span className="text-lg font-black text-cyan-800">{activeMonthStats.surveys} งาน</span>
             </div>
           </div>
-          <div 
-            onClick={() => {
-              setTypeFilters(["delivery"]);
-              setStatusFilters(["pending", "completed", "cancelled"]);
-            }}
-            className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4 cursor-pointer hover:shadow-md hover:border-gold/30 hover:-translate-y-0.5 transition-all duration-300"
-          >
+          <div className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4">
             <div className="h-10 w-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
               <MapPin className="h-5 w-5 text-emerald-600" />
             </div>
@@ -687,13 +669,7 @@ export default function CalendarPage() {
               <span className="text-lg font-black text-emerald-800">{activeMonthStats.deliveries} ครั้ง</span>
             </div>
           </div>
-          <div 
-            onClick={() => {
-              setStatusFilters(["completed"]);
-              setTypeFilters(["survey", "delivery", "payment", "milestone", "meeting", "other"]);
-            }}
-            className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4 cursor-pointer hover:shadow-md hover:border-gold/30 hover:-translate-y-0.5 transition-all duration-300"
-          >
+          <div className="bg-white border border-card-border rounded-2xl p-4 flex items-center gap-4">
             <div className="h-10 w-10 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
               <CheckCircle className="h-5 w-5 text-gold" />
             </div>
