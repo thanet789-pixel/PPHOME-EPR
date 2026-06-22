@@ -79,7 +79,7 @@ export default function DashboardCharts({ productionOrders }: ChartsProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 select-none text-left">
       {/* Sales Trend Line Chart Card */}
-      <div className="lg:col-span-2 premium-card p-6 flex flex-col justify-between">
+      <div className="lg:col-span-2 premium-card p-6 flex flex-col justify-between bg-[#EBF3F5]">
         <div className="flex items-center justify-between border-b border-card-border pb-3.5 mb-4">
           <h3 className="text-sm font-bold text-primary">กราฟยอดขายรายเดือน</h3>
           <select className="text-xs bg-background border border-card-border rounded-lg px-2.5 py-1 font-bold text-foreground/75 outline-none">
@@ -182,7 +182,7 @@ export default function DashboardCharts({ productionOrders }: ChartsProps) {
       </div>
 
       {/* Production Donut Chart Card */}
-      <div className="premium-card p-6 flex flex-col justify-between">
+      <div className="premium-card p-6 flex flex-col justify-between bg-[#F5F5EB]">
         <div className="border-b border-card-border pb-3.5 mb-4">
           <h3 className="text-sm font-bold text-primary">สถานะงานผลิต</h3>
         </div>

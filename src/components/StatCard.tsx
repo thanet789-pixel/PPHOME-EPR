@@ -13,13 +13,14 @@ interface StatCardProps {
     isUp: boolean;
   };
   onClick?: () => void;
+  bgClass?: string;
 }
 
-export default function StatCard({ title, value, subtext, icon: Icon, trend, onClick }: StatCardProps) {
+export default function StatCard({ title, value, subtext, icon: Icon, trend, onClick, bgClass = "bg-white" }: StatCardProps) {
   return (
     <div
       onClick={onClick}
-      className={`group relative overflow-hidden rounded-2xl bg-white border border-card-border p-6 flex flex-col justify-between h-40 transition-all duration-300 hover:shadow-md hover:border-gold/30 hover:-translate-y-0.5 ${
+      className={`group relative overflow-hidden rounded-2xl ${bgClass} border border-card-border p-6 flex flex-col justify-between h-40 transition-all duration-300 hover:shadow-md hover:border-gold/30 hover:-translate-y-0.5 ${
         onClick ? "cursor-pointer" : ""
       }`}
     >

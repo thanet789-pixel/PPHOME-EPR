@@ -244,6 +244,7 @@ export default function Dashboard() {
           icon={Coins}
           trend={{ value: "↑ 12.5% จากเมื่อวาน", isUp: true }}
           onClick={() => router.push("/payments")}
+          bgClass="bg-[#EAF5F0]"
         />
         <StatCard
           title="ยอดขายเดือนนี้"
@@ -252,6 +253,7 @@ export default function Dashboard() {
           icon={TrendingUp}
           trend={{ value: "↑ 18.3% จากเดือนที่แล้ว", isUp: true }}
           onClick={() => router.push("/payments")}
+          bgClass="bg-[#EBF5F8]"
         />
         <StatCard
           title="กำไรสุทธิเดือนนี้"
@@ -260,6 +262,7 @@ export default function Dashboard() {
           icon={Percent}
           trend={{ value: "↑ 15.7% จากเดือนที่แล้ว", isUp: true }}
           onClick={() => router.push("/reports")}
+          bgClass="bg-[#FAF5E6]"
         />
         <StatCard
           title="ลูกค้าใหม่เดือนนี้"
@@ -268,6 +271,7 @@ export default function Dashboard() {
           icon={Users}
           trend={{ value: "↑ 9 ราย จากเดือนที่แล้ว", isUp: true }}
           onClick={() => router.push("/crm")}
+          bgClass="bg-[#F5EAF5]"
         />
       </div>
 
@@ -279,7 +283,7 @@ export default function Dashboard() {
         </div>
 
         {/* Right Column: Notification Panel */}
-        <div className="premium-card p-6 flex flex-col justify-between select-none text-left">
+        <div className="premium-card p-6 flex flex-col justify-between select-none text-left bg-[#FDF2F4]">
           <div className="border-b border-card-border pb-3.5 mb-4">
             <h3 className="text-sm font-bold text-primary flex items-center gap-2">
               <BellRing className="h-4.5 w-4.5 text-primary" />
@@ -343,7 +347,7 @@ export default function Dashboard() {
       {/* 4. BOTTOM ROW: RECENT JOBS, LOW STOCK & CUSTOMERS */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 select-none mt-2">
         {/* Left (col-span-2): Recent Jobs */}
-        <div className="lg:col-span-2 premium-card p-6 flex flex-col justify-between text-left">
+        <div className="lg:col-span-2 premium-card p-6 flex flex-col justify-between text-left bg-[#F2F8F5]">
           <div className="flex items-center justify-between border-b border-card-border pb-3.5 mb-4">
             <h3 className="text-sm font-bold text-primary">งานล่าสุด</h3>
           </div>
@@ -406,7 +410,7 @@ export default function Dashboard() {
         </div>
 
         {/* Middle (col-span-1): Low Stock Materials */}
-        <div className="premium-card p-6 flex flex-col justify-between text-left">
+        <div className="premium-card p-6 flex flex-col justify-between text-left bg-[#FCF7F2]">
           <div className="flex items-center justify-between border-b border-card-border pb-3.5 mb-4">
             <h3 className="text-sm font-bold text-primary">วัสดุใกล้หมด</h3>
           </div>
@@ -453,7 +457,7 @@ export default function Dashboard() {
         </div>
 
         {/* Right (col-span-1): Recent Customers List */}
-        <div className="premium-card p-6 flex flex-col justify-between text-left">
+        <div className="premium-card p-6 flex flex-col justify-between text-left bg-[#F5F7FC]">
           <div className="flex items-center justify-between border-b border-card-border pb-3.5 mb-4">
             <h3 className="text-sm font-bold text-primary">ลูกค้าล่าสุด</h3>
           </div>
