@@ -49,18 +49,18 @@ export default function Header({ setMobileOpen }: HeaderProps) {
   };
 
   return (
-    <header className="flex h-20 items-center justify-between border-b border-card-border bg-[#FFFFFF] px-8 shrink-0 shadow-sm">
+    <header className="flex h-20 items-center justify-between border-b border-white/10 bg-[#0F2D24] px-8 shrink-0 shadow-sm z-10">
       <div className="flex items-center gap-4">
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMobileOpen(true)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-card-border bg-background text-primary md:hidden transition-colors"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#1F5A46] text-white md:hidden transition-colors hover:text-gold"
         >
           <Menu className="h-5 w-5" />
         </button>
 
         <div>
-          <h1 className="text-lg font-bold tracking-tight text-primary md:text-xl">
+          <h1 className="text-lg font-bold tracking-tight text-white md:text-xl">
             {getPageTitle()}
           </h1>
         </div>
@@ -69,7 +69,7 @@ export default function Header({ setMobileOpen }: HeaderProps) {
       <div className="flex items-center gap-4.5">
         {/* Global Search Bar */}
         <div className="relative hidden md:block w-64">
-          <span className="absolute inset-y-0 left-3 flex items-center text-primary/40">
+          <span className="absolute inset-y-0 left-3 flex items-center text-white/45">
             <Search className="h-4 w-4" />
           </span>
           <input
@@ -77,12 +77,12 @@ export default function Header({ setMobileOpen }: HeaderProps) {
             value={searchVal}
             onChange={(e) => setSearchVal(e.target.value)}
             placeholder="ค้นหา..."
-            className="w-full rounded-xl pl-9 pr-4 py-2 text-xs bg-background border border-card-border text-foreground focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all placeholder:text-foreground/30"
+            className="w-full rounded-xl pl-9 pr-4 py-2 text-xs bg-[#1F5A46] border border-white/10 text-white focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all placeholder:text-white/40"
           />
         </div>
 
         {/* Notifications Icon */}
-        <button className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-card-border bg-background text-primary hover:border-gold/40 hover:text-gold transition-colors">
+        <button className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#1F5A46] text-white hover:border-gold/40 hover:text-gold transition-colors">
           <Bell className="h-4.5 w-4.5" />
           <span className="absolute top-1.5 right-1.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] font-extrabold text-white">
             5
@@ -90,22 +90,22 @@ export default function Header({ setMobileOpen }: HeaderProps) {
         </button>
 
         {/* Language Switcher */}
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-card-border bg-background text-primary cursor-pointer hover:border-gold/40 transition-colors">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#1F5A46] text-white cursor-pointer hover:border-gold/40 transition-colors">
           <span className="text-base select-none">🇹🇭</span>
         </div>
 
         {/* Divider */}
-        <div className="h-8 w-[1px] bg-card-border hidden sm:block" />
+        <div className="h-8 w-[1px] bg-white/15 hidden sm:block" />
 
         {/* User Profile avatar block */}
         <div className="flex items-center gap-3">
           <div className="flex flex-col text-right hidden sm:flex">
-            <span className="text-xs font-bold text-primary">{user.displayName || "Admin"}</span>
-            <span className="text-[9px] text-primary-light font-medium mt-0.5">
+            <span className="text-xs font-bold text-white">{user.displayName || "Admin"}</span>
+            <span className="text-[9px] text-gold font-bold mt-0.5">
               {user.role === "Administrator" || !user.role ? "ผู้ดูแลระบบ" : user.role}
             </span>
           </div>
-          <div className="h-9 w-9 rounded-xl border border-card-border bg-primary/5 text-primary flex items-center justify-center font-bold text-xs select-none">
+          <div className="h-9 w-9 rounded-xl border border-white/10 bg-[#1F5A46] text-white flex items-center justify-center font-bold text-xs select-none">
             {user.displayName ? user.displayName.substring(0, 2).toUpperCase() : "AD"}
           </div>
         </div>
