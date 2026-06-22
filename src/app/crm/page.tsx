@@ -31,14 +31,12 @@ function CRMPageContent() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(customers[0]?.id || null);
-  const [mobileShowDetail, setMobileShowDetail] = useState(false);
 
   useEffect(() => {
     if (customerIdParam && customers && customers.length > 0) {
       const exists = customers.some(c => c.id === customerIdParam);
       if (exists) {
         setSelectedCustomerId(customerIdParam);
-        setMobileShowDetail(true);
       }
     }
   }, [customerIdParam, customers]);
@@ -138,8 +136,8 @@ function CRMPageContent() {
     <MainLayout>
       <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-12rem)] select-none">
         
-        {/* Left Side: Customer Lists Column */}
-        <div className={`w-full lg:w-96 flex flex-col gap-4 bg-white border border-card-border rounded-2xl p-4 shrink-0 overflow-y-auto ${mobileShowDetail ? "hidden lg:flex" : "flex"}`}>
+        {/* Left Side: Customer Lists Column (Desktop only) */}
+        <div className="hidden lg:flex w-full lg:w-96 flex-col gap-4 bg-white border border-card-border rounded-2xl p-4 shrink-0 overflow-y-auto">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-primary tracking-widest uppercase">รายชื่อลูกค้า</h3>
             <button
@@ -168,10 +166,7 @@ function CRMPageContent() {
             {filteredCustomers.map((cust) => (
               <div
                 key={cust.id}
-                onClick={() => {
-                  setSelectedCustomerId(cust.id);
-                  setMobileShowDetail(true);
-                }}
+                onClick={() => setSelectedCustomerId(cust.id)}
                 className={`rounded-xl border p-3 cursor-pointer text-left transition-all ${
                   selectedCustomerId === cust.id 
                     ? "bg-primary/5 border-gold text-primary shadow-sm"
@@ -195,15 +190,32 @@ function CRMPageContent() {
 
         {/* Right Side: Details & Timeline Column */}
         {activeCustomer ? (
-          <div className={`flex-1 flex flex-col gap-6 overflow-y-auto pr-2 ${mobileShowDetail ? "flex" : "hidden lg:flex"}`}>
+          <div className="flex-1 flex flex-col gap-6 overflow-y-auto pr-2">
             
-            {/* Mobile Back Button */}
-            <button
-              onClick={() => setMobileShowDetail(false)}
-              className="lg:hidden flex items-center gap-1.5 text-primary text-xs font-extrabold self-start bg-primary/5 hover:bg-primary/10 px-4 py-2.5 rounded-xl border border-card-border transition-all mb-1"
-            >
-              ← กลับไปรายชื่อลูกค้า
-            </button>
+            {/* Mobile Customer Dropdown Selector & Add Button */}
+            <div className="lg:hidden flex items-end gap-3 bg-white border border-card-border rounded-2xl p-4 mb-2 select-none">
+              <div className="flex-1 flex flex-col gap-2">
+                <label className="text-[10px] font-extrabold text-gold tracking-widest uppercase">เลือกข้อมูลลูกค้า</label>
+                <select
+                  value={selectedCustomerId || ""}
+                  onChange={(e) => setSelectedCustomerId(e.target.value)}
+                  className="w-full rounded-xl bg-background border border-card-border px-3.5 py-2.5 text-xs font-bold text-primary focus:outline-none focus:border-gold/50 transition-all cursor-pointer"
+                >
+                  {customers.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name} {c.company ? `(${c.company})` : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                onClick={() => handleOpenDrawer(null)}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-gold hover:bg-primary-light border border-card-border transition-all"
+                title="เพิ่มลูกค้าใหม่"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
             
             {/* Top Detail Card */}
             <div className="premium-card p-6 relative">
