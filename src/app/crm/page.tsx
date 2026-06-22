@@ -31,12 +31,14 @@ function CRMPageContent() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(customers[0]?.id || null);
+  const [mobileShowDetail, setMobileShowDetail] = useState(false);
 
   useEffect(() => {
     if (customerIdParam && customers && customers.length > 0) {
       const exists = customers.some(c => c.id === customerIdParam);
       if (exists) {
         setSelectedCustomerId(customerIdParam);
+        setMobileShowDetail(true);
       }
     }
   }, [customerIdParam, customers]);
@@ -137,7 +139,7 @@ function CRMPageContent() {
       <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-12rem)] select-none">
         
         {/* Left Side: Customer Lists Column */}
-        <div className="w-full lg:w-96 flex flex-col gap-4 bg-white border border-card-border rounded-2xl p-4 shrink-0 overflow-y-auto">
+        <div className={`w-full lg:w-96 flex flex-col gap-4 bg-white border border-card-border rounded-2xl p-4 shrink-0 overflow-y-auto ${mobileShowDetail ? "hidden lg:flex" : "flex"}`}>
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-primary tracking-widest uppercase">รายชื่อลูกค้า</h3>
             <button
@@ -166,7 +168,10 @@ function CRMPageContent() {
             {filteredCustomers.map((cust) => (
               <div
                 key={cust.id}
-                onClick={() => setSelectedCustomerId(cust.id)}
+                onClick={() => {
+                  setSelectedCustomerId(cust.id);
+                  setMobileShowDetail(true);
+                }}
                 className={`rounded-xl border p-3 cursor-pointer text-left transition-all ${
                   selectedCustomerId === cust.id 
                     ? "bg-primary/5 border-gold text-primary shadow-sm"
@@ -190,7 +195,15 @@ function CRMPageContent() {
 
         {/* Right Side: Details & Timeline Column */}
         {activeCustomer ? (
-          <div className="flex-1 flex flex-col gap-6 overflow-y-auto pr-2">
+          <div className={`flex-1 flex flex-col gap-6 overflow-y-auto pr-2 ${mobileShowDetail ? "flex" : "hidden lg:flex"}`}>
+            
+            {/* Mobile Back Button */}
+            <button
+              onClick={() => setMobileShowDetail(false)}
+              className="lg:hidden flex items-center gap-1.5 text-primary text-xs font-extrabold self-start bg-primary/5 hover:bg-primary/10 px-4 py-2.5 rounded-xl border border-card-border transition-all mb-1"
+            >
+              ← กลับไปรายชื่อลูกค้า
+            </button>
             
             {/* Top Detail Card */}
             <div className="premium-card p-6 relative">
