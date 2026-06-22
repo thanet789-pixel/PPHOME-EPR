@@ -1,11 +1,22 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 import { useAuth } from "@/app/providers";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { Package, Layers, CircleDollarSign, Users2, Landmark } from "lucide-react";
+import { 
+  Package, 
+  Layers, 
+  CircleDollarSign, 
+  Users2, 
+  Landmark,
+  Home,
+  Calendar,
+  Calculator,
+  FolderKanban
+} from "lucide-react";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -13,8 +24,16 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, loading } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const mobileMenuItems = [
+    { name: "หน้าหลัก", href: "/", icon: Home },
+    { name: "ปฏิทิน", href: "/calendar", icon: Calendar },
+    { name: "BOQ", href: "/boq", icon: Calculator },
+    { name: "โครงการ", href: "/projects", icon: FolderKanban },
+  ];
 
   // Security guard checking for logged in user session
   useEffect(() => {
@@ -56,7 +75,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </main>
 
         {/* Premium Bottom Status Bar */}
-        <footer className="absolute bottom-0 left-0 right-0 h-14 bg-[#051A14] border-t border-white/5 flex items-center justify-between px-6 z-30 text-white/90">
+        <footer className="absolute bottom-0 left-0 right-0 h-14 bg-[#051A14] border-t border-white/5 hidden md:flex items-center justify-between px-6 z-30 text-white/90">
           <div className="flex items-center gap-8 overflow-x-auto no-scrollbar py-1">
             {/* Stat 1 */}
             <div className="flex items-center gap-2.5 shrink-0">
@@ -119,6 +138,30 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <span className="text-[9px] text-white/40 font-medium tracking-widest">FURNITURE & DESIGN</span>
           </div>
         </footer>
+
+        {/* Mobile Bottom Navigation Bar */}
+        <nav className="fixed bottom-0 left-0 right-0 z-40 h-16 bg-[#051A14] border-t border-white/10 backdrop-blur-md md:hidden flex items-center justify-around px-2 shadow-2xl">
+          {mobileMenuItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`flex flex-col items-center justify-center flex-1 h-full transition-all duration-200 relative ${
+                  isActive ? "text-gold" : "text-white/60 hover:text-white"
+                }`}
+              >
+                {isActive && (
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-gold rounded-full" />
+                )}
+                <Icon className={`h-5 w-5 ${isActive ? "text-gold scale-110" : "text-white/60"}`} />
+                <span className="text-[10px] font-semibold mt-1 tracking-wider">{item.name}</span>
+              </Link>
+            );
+          })}
+        </nav>
       </div>
     </div>
   );
